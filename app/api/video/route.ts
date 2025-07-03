@@ -2,6 +2,7 @@ import { authOptions } from "@/lib/auth";
 import { connectToDatabase } from "@/lib/db";
 import Video, { IVideo } from "@/models/Video";
 import { getServerSession } from "next-auth";
+import { NextRequest } from "next/server";
 
 // Function to Get Video
 export async function GET() {
@@ -24,7 +25,7 @@ export async function GET() {
 }
 
 // Function to Create Video
-export async function POST(request: Request) {
+export async function POST(request: NextRequest) {
   try {
     // Check if the user is authenticated
     const session = await getServerSession(authOptions);
