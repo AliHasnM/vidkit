@@ -1,36 +1,131 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 🎬 VidKit – Fullstack Video Upload & Streaming App with Next.js
 
-## Getting Started
+VidKit is a modern, full-stack video platform built using the Next.js App Router. It allows authenticated users to upload, stream, and view videos with optimized thumbnail previews. The project leverages powerful tools like **ImageKit**, **NextAuth**, **MongoDB**, and **Tailwind CSS** to deliver a smooth developer and user experience.
 
-First, run the development server:
+---
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+## 🚀 Features
+
+- 🔐 **Authentication** – Secure login/logout using NextAuth
+- 📦 **MongoDB Database** – Mongoose models for users & videos
+- 🖼️ **ImageKit Integration** – Real-time optimized image and video uploads
+- 🧠 **AI-powered Transformations** via ImageKit URL parameters
+- 📂 **Video Uploading** – Separate thumbnail and video file handling
+- 🔎 **Public Feed** – Users can view uploaded videos
+- ⚙️ **Protected Routes & Middleware** – Only authenticated users can upload
+- 🎨 **Tailwind CSS UI** – Clean, responsive design
+
+---
+
+## 🧰 Tech Stack
+
+| Technology             | Purpose                                        |
+| ---------------------- | ---------------------------------------------- |
+| **Next.js App Router** | Full-stack React framework                     |
+| **MongoDB + Mongoose** | NoSQL database and schema modeling             |
+| **NextAuth.js**        | User authentication & session handling         |
+| **ImageKit**           | Media upload, optimization, and CDN            |
+| **Tailwind CSS**       | Utility-first CSS framework                    |
+| **Axios**              | API communication between frontend and backend |
+
+---
+
+## 📁 Folder Structure
+
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+.
+├── next-auth.d.ts                      # Type augmentation for NextAuth
+├── middleware.ts                       # Route protection middleware
+├── .env                                # Environment variables
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+├── models/
+│   ├── User.ts                         # Mongoose model for users
+│   └── Video.ts                        # Mongoose model for videos
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+├── lib/
+│   ├── api-client.ts                   # Axios wrapper for API calls
+│   ├── auth.ts                         # NextAuth config
+│   └── db.ts                           # MongoDB connection
 
-## Learn More
+├── app/
+│   ├── layout.tsx                      # Global layout
+│   ├── page.tsx                        # Home page (Video Feed)
 
-To learn more about Next.js, take a look at the following resources:
+│   ├── api/
+│   │   ├── auth/
+│   │   │   ├── \[...nextauth]           # NextAuth route
+│   │   │   └── register                # User registration API
+│   │   ├── imagekit-auth               # ImageKit token auth API
+│   │   └── video                       # Video CRUD API
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+│   ├── (auth)/
+│   │   ├── login                       # Login page
+│   │   └── register                    # Register page
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+│   ├── components/
+│   │   ├── FileUpload.tsx             # Upload component (ImageKit)
+│   │   ├── Footer.tsx                 # Page footer
+│   │   ├── Header.tsx                 # Top navigation
+│   │   ├── Providers.tsx              # Session provider
+│   │   └── VideoCard.tsx              # Video card preview
 
-## Deploy on Vercel
+│   └── file-upload/                   # Upload form page (protected)
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+```
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+---
+
+## 🔧 Environment Variables
+
+Make sure to add the following in your `.env`:
+
+```env
+MONGODB_URI=your_mongodb_connection_string
+NEXTAUTH_SECRET=your_nextauth_secret
+NEXTAUTH_URL=http://localhost:3000
+
+NEXT_PUBLIC_IMAGEKIT_PUBLIC_KEY=your_imagekit_public_key
+IMAGEKIT_PRIVATE_KEY=your_imagekit_private_key
+IMAGEKIT_URL_ENDPOINT=https://ik.imagekit.io/your_imagekit_id
+```
+
+---
+
+## 🧠 ImageKit AI Tips
+
+Use smart URL transformation like:
+
+```
+https://ik.imagekit.io/your_id/your_image.jpg?tr=w-400,h-300,q-90,fo-auto
+```
+
+---
+
+## 📦 Local Development
+
+```bash
+git clone https://github.com/AliHasnM/vidkit.git
+cd vidkit
+npm install
+npm run dev
+```
+
+Open your browser at [http://localhost:3000](http://localhost:3000)
+
+---
+
+## 🌍 Deployment
+
+Recommended: [Vercel](https://vercel.com/)
+
+- Set `.env` values in Vercel's Environment Variables
+- Connect GitHub → Deploy
+
+---
+
+## 🪪 License
+
+MIT © Ali Hassan
+
+---
