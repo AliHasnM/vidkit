@@ -99,7 +99,7 @@ const FileUpload = ({ onSuccess, onProgress, fileType }: FileUploadProps) => {
             />
 
             {selectedFile && (
-                <p className="text-sm text-gray-600">
+                <p className="text-sm text-gray-600 ">
                     Selected file: {selectedFile.name}
                 </p>
             )}
@@ -114,8 +114,8 @@ const FileUpload = ({ onSuccess, onProgress, fileType }: FileUploadProps) => {
                 onClick={handleUpload}
                 disabled={!selectedFile || uploading}
                 className={`px-4 py-2 rounded ${!selectedFile || uploading
-                    ? "bg-gray-300 cursor-not-allowed"
-                    : "bg-blue-600 text-white hover:bg-blue-700"
+                    ? "bg-gray-500 cursor-not-allowed"
+                    : "bg-blue-600 text-white hover:bg-blue-700 hover:cursor-pointer"
                     }`}
             >
                 {uploading ? "Uploading..." : "Upload"}

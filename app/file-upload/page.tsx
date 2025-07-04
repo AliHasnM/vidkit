@@ -63,7 +63,7 @@ const UploadVideoPage = () => {
         <div className="max-w-3xl mx-auto py-10 px-4">
             <h1 className="text-2xl font-bold mb-6">Upload New Video</h1>
 
-            <div className="space-y-4">
+            <div className="space-y-4 border-2 p-10 rounded-md">
                 <div>
                     <label className="block mb-1 font-medium">Title</label>
                     <input
@@ -98,9 +98,11 @@ const UploadVideoPage = () => {
                             <Image
                                 src={thumbnailUrl}
                                 alt="Thumbnail Preview"
-                                fill
+                                width={200}
+                                height={150}
                                 className="object-cover rounded border"
                             />
+
                         </div>
                     )}
                 </div>
@@ -108,6 +110,7 @@ const UploadVideoPage = () => {
                 <div>
                     <label className="block mb-1 font-medium">Upload Video</label>
                     <FileUpload
+
                         fileType="video"
                         onSuccess={(res: any) => setVideoUrl(res.url)}
                         onProgress={(p) => console.log("Video upload progress:", p)}
@@ -128,7 +131,7 @@ const UploadVideoPage = () => {
                     disabled={loading}
                     className={`mt-4 px-5 py-2 rounded text-white font-medium ${loading
                         ? "bg-gray-400 cursor-not-allowed"
-                        : "bg-green-600 hover:bg-green-700"
+                        : "bg-green-600 hover:bg-green-700 hover:cursor-pointer"
                         }`}
                 >
                     {loading ? "Submitting..." : "Submit Video"}

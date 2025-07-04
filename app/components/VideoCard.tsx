@@ -16,8 +16,8 @@ const VideoCard = ({ video }: Props) => {
                 className="w-full h-64 object-cover"
             />
             <div className="p-4">
-                <h2 className="font-semibold text-lg">{video.title}</h2>
-                <p className="text-gray-600 text-sm">{video.description}</p>
+                <h2 className="font-semibold text-lg text-zinc-900 tracking-tight">{video.title}</h2>
+                <p className="text-gray-600 text-sm tracking-tight">{video.description}</p>
             </div>
         </div>
     );

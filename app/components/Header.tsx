@@ -12,19 +12,19 @@ const Header = () => {
                 🎬 MyVidKit
             </Link>
 
-            <nav className="flex items-center gap-4">
-                <Link href="/videos" className="hover:underline">
+            <nav className="flex items-center gap-16">
+                {/* <Link href="/videos" className="hover:underline">
                     All Videos
-                </Link>
+                </Link> */}
 
                 {session?.user ? (
                     <>
-                        <Link href="/file-upload" className="hover:underline">
+                        <Link href="/file-upload" className="bg-zinc-800 hover:bg-zinc-700 hover:cursor-pointer px-4 py-1 rounded">
                             Upload
                         </Link>
                         <button
                             onClick={() => signOut()}
-                            className="bg-red-500 hover:bg-red-600 px-4 py-1 rounded"
+                            className="bg-red-500 hover:bg-red-600 hover:cursor-pointer px-4 py-1 rounded"
                         >
                             Logout
                         </button>
@@ -32,7 +32,7 @@ const Header = () => {
                 ) : (
                     <button
                         onClick={() => signIn()}
-                        className="bg-blue-500 hover:bg-blue-600 px-4 py-1 rounded"
+                        className="bg-blue-500 hover:bg-blue-600 px-4 py-1 rounded hover:cursor-pointer"
                     >
                         Login
                     </button>

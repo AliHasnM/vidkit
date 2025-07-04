@@ -26,7 +26,9 @@ class ApiClient {
       headers: defaultHeaders,
       body: body ? JSON.stringify(body) : null,
       signal,
+      credentials: "same-origin", // ✅ Added this line
     });
+    console.log("response ", response);
 
     if (!response.ok) {
       throw new Error(response.statusText);
