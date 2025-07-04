@@ -36,6 +36,7 @@ export async function POST(request: NextRequest) {
     await connectToDatabase();
     // Parse the request body
     const body: IVideo = await request.json();
+    console.log("Received Body:", body);
     if (
       !body.title ||
       !body.description ||

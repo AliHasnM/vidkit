@@ -38,6 +38,9 @@ class ApiClient {
   async getVideos(): Promise<IVideo[]> {
     return this.fetch<IVideo[]>("/video");
   }
+  async getVideoById(id: string): Promise<IVideo> {
+    return this.fetch<IVideo>(`/video/${id}`);
+  }
 
   async createVideo(video: VideoFormData): Promise<IVideo> {
     return this.fetch<IVideo>("/video", {

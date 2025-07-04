@@ -23,13 +23,14 @@ export async function connectToDatabase() {
 
   if (!cached.promise) {
     const opts = {
-      bufferCommands: false,
+      bufferCommands: true,
       maxPoolSize: 10, // Adjust the pool size as needed
       // serverSelectionTimeoutMS: 5000, // Timeout after 5 seconds if no server is available
       // socketTimeoutMS: 45000, // Close sockets after 45 seconds of inactivity
     };
 
     mongoose.connect(MONGODB_URI, opts).then(() => mongoose.connection);
+    // cached.promise = mongoose.connect(MONGODB_URI, opts);
   }
 
   try {

@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 "use client";
 import { upload } from "@imagekit/next";
 import axios from "axios";
@@ -5,7 +6,7 @@ import { useState } from "react";
 
 // File upload props interface
 interface FileUploadProps {
-    onSuccess: (res: unknown) => void;
+    onSuccess: (res: any) => void;
     onProgress: (progress: number) => void;
     fileType?: "image" | "video" | "file";
 }
@@ -39,7 +40,7 @@ const FileUpload = ({ onSuccess, onProgress, fileType }: FileUploadProps) => {
             validateFile(file);
             setSelectedFile(file);
             setError(null);
-        } catch (error: unknown) {
+        } catch (error: any) {
             setError(error instanceof Error ? error.message : "An error occurred in file validation.");
             setSelectedFile(null);
         }
@@ -55,15 +56,15 @@ const FileUpload = ({ onSuccess, onProgress, fileType }: FileUploadProps) => {
 
         try {
             const authResponse = await axios.get("/api/imagekit-auth");
-            const auth = authResponse.data;
+            const { authenticationParameters } = authResponse.data;
 
             const uploadResult = await upload({
                 file: selectedFile,
                 fileName: selectedFile.name,
                 publicKey: process.env.NEXT_PUBLIC_IMAGEKIT_PUBLIC_KEY!,
-                signature: auth.signature,
-                expire: auth.expire,
-                token: auth.token,
+                signature: authenticationParameters.signature,
+                expire: authenticationParameters.expire,
+                token: authenticationParameters.token,
                 onProgress: (progressEvent: ProgressEvent<EventTarget>) => {
                     if (progressEvent.lengthComputable && onProgress) {
                         const percent = Math.round(
@@ -75,8 +76,10 @@ const FileUpload = ({ onSuccess, onProgress, fileType }: FileUploadProps) => {
                 },
                 abortSignal: new AbortController().signal,
             });
-
+            console.log("Upload result:", uploadResult);
             onSuccess(uploadResult);
+            console.log("File uploaded successfully:", uploadResult);
+
             setSelectedFile(null);
         } catch (error) {
             console.error("Upload failed:", error);
